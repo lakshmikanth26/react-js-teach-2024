@@ -4,30 +4,30 @@ import { Button, Box, Container, Typography } from '@mui/material';
 
 const Home = () => {
     const navigate = useNavigate();
-
-    return (
-        <Container maxWidth="sm">
-        <Box
-            sx={{
+    const loginNavigate = () => navigate('/login')
+    const HomeDom = <Container maxWidth="sm">
+    <Box
+        sx={{
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            }}
+        }}
+    >
+        <Typography variant="h4" component="h1" gutterBottom>
+            Home Page - version 1
+        </Typography>
+        <Button
+        variant="outlined"
+        color="primary"
+        onClick={loginNavigate}
         >
-            <Typography variant="h4" component="h1" gutterBottom>
-            Home Page
-            </Typography>
-            <Button
-            variant="contained"
-            color="primary"
-            onClick={() => navigate('/login')}
-            >
-            Go to Login
-            </Button>
-        </Box>
-        </Container>
-    );
+        Go to Login
+        </Button>
+    </Box>
+    </Container>
+
+    return HomeDom;
 };
 
 export default Home;

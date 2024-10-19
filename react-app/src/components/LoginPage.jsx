@@ -14,7 +14,8 @@ const LoginPage = () => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
         let isValid = true;
     
         // Email validation
@@ -32,16 +33,18 @@ const LoginPage = () => {
         if (!password) {
             setPasswordError('Password is required');
             isValid = false;
-        } else if (password.length < 6) {
-            setPasswordError('Password must be at least 6 characters long');
+        } else if (password.length < 8) {
+            setPasswordError('Password must be at least 8 characters long');
             isValid = false;
         } else {
             setPasswordError('');
         }
-    
+        
         if (isValid) {
             console.log('Form is valid, proceed with login');
-          // Perform login actions here
+            console.log("Email:"+email,"password:"+password)
+        } else {
+            return false;
         }
     };
 
@@ -62,7 +65,7 @@ const LoginPage = () => {
             borderRadius: '8px',
             boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Optional for some styling
         }}>
-        <Box
+            <Box
             sx={{
             marginTop: 0,
             display: "flex",
@@ -76,32 +79,32 @@ const LoginPage = () => {
             <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
             <Stack spacing={3}>
                 <TextField
-                label="Email Address"
-                variant="outlined"
-                fullWidth
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                error={!!emailError}
-                helperText={emailError}
+                    label="Email Address"
+                    variant="outlined"
+                    fullWidth
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    error={!!emailError}
+                    helperText={emailError}
                 />
                 <TextField
-                label="Password"
-                variant="outlined"
-                type="password"
-                fullWidth
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                error={!!passwordError}
-                helperText={passwordError}
+                    label="Password"
+                    variant="outlined"
+                    type="password"
+                    fullWidth
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    error={!!passwordError}
+                    helperText={passwordError}
                 />
                 <Button type="submit" fullWidth variant="contained" color="primary">
-                Login
+                    Login
                 </Button>
             </Stack>
             </Box>
-        </Box>
+            </Box>
         </Container>
         </Box>
     );
